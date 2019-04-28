@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    options{
+        disableConcurrentBuilds()
+        timeout(time: 10, unit: 'MINUTES')
+    }
+
+    stages {
+        stage('Build image') {
+            steps{
+                sh('cd app/ && docker build . -t web-app')
+            }
+        }
+
+        stage('Start service') {
+            steps{
+                sh('cd app/ && docker-compose up -d')
+            }
+        }
+
+        stage('Run performance tests') {
+            steps{
+                bzt('tests/performance/taurus.yml')
+            }
+        }
+    }
+
+    post {
+        always {
+            sh('cd app/ && docker-compose down')
+            cleanWs()
+        }
+    }
+}

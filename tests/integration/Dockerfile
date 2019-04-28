@@ -4,6 +4,5 @@ ADD requirements.txt /
 # "cashing"
 RUN pip install -r requirements.txt
 ADD . /
-EXPOSE 8081
 
-CMD [ "python", "./server.py" ]
+CMD [ "pytest", "test_integration.py"]

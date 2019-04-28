@@ -1,5 +1,6 @@
 TODO:
-- Fix integration tests
-- Load tests (JMeter + taurus)
+- ~~Fix integration tests~~
+- ~~Load tests (JMeter + taurus)~~
 - Reports (Jenkins + Allure)
 - Deploy
+- Different environments

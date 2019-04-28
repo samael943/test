@@ -1,0 +1,17 @@
+---
+execution:
+- concurrency: 5
+  throughput: 5 # RPS
+  hold-for: 1m
+  scenario: web-service
+
+scenarios:
+  web-service:
+    script: web-service.jmx
+
+reporting:
+- module: console
+- module: final-stats
+  summary: true
+  percentiles: true
+  test-duration: true

@@ -1,0 +1,5 @@
+services:
+- module: shellexec
+  post-process:
+  - awk -F',' -v OFS=',' '$7 = $7 FS "failureMessage"' ${TAURUS_ARTIFACTS_DIR}/kpi.jtl > ${TAURUS_ARTIFACTS_DIR}/kpi_awk.csv
+  - ~/.bzt/jmeter-taurus/5.0/bin/jmeter.sh -g ${TAURUS_ARTIFACTS_DIR}/kpi_awk.csv -o ${TAURUS_ARTIFACTS_DIR}/jmeterDashboard

@@ -8,4 +8,4 @@ def reverse_string(input):
 def square(input):
     return str(input * input)
 
-run(host='localhost', port=5000, debug=True)
+run(host='0.0.0.0', port=8081, debug=True)

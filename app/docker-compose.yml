@@ -1,6 +1,10 @@
 version: '3'
 services:
   web-demo:
-    build: .
+    image: web-app:latest
     ports:
-     - "5000:5000"
+      - "8081:8081"
+    networks: 
+      - backend
+networks: 
+  backend:
