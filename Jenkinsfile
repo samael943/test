@@ -6,13 +6,17 @@ def sendEmailOnFailure() {
 pipeline {
     agent any
 
+    environment {
+        TESTS_CONTAINER = 'integ-tests'
+    }
+
     parameters {
         booleanParam(defaultValue: false, description: 'Deploy', name: 'PUSH_AND_DEPLOY')
     }
 
     options{
         disableConcurrentBuilds()
-        timeout(time: 10, unit: 'MINUTES')
+        timeout(time: 5, unit: 'MINUTES')
     }
 
     stages {
@@ -30,7 +34,8 @@ pipeline {
 
         stage('Run integration tests') {
             steps{
-                sh('cd tests/integration/ && docker build . -t integration-tests && docker run --network=host integration-tests')
+                sh('cd tests/integration/ && docker build . -t integration-tests')
+                sh('docker run --network=host --name ${TESTS_CONTAINER} integration-tests')
             }
         }
 
@@ -48,7 +53,10 @@ pipeline {
 
     post {
         always {
+            sh('docker cp ${TESTS_CONTAINER}:/allure-results ${WORKSPACE}')
+            allure ([results: [[path: 'allure-results']]])
             sh('cd app/ && docker-compose down')
+            sh('docker rm ${TESTS_CONTAINER}')
             cleanWs()
         }
         failure {
