@@ -1,7 +1,10 @@
 version: '3'
+
 services:
   web-demo:
     image: web-app:latest
+    environment:
+      - DEPLOYMENT_ENV=STAGING
     ports:
       - "8081:8081"
     networks: 

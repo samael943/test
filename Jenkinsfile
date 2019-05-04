@@ -46,7 +46,11 @@ pipeline {
                 }
             }
             steps{
-                sh('echo Imitate Push')
+                withCredentials([usernamePassword(credentialsId: "azure_registry", passwordVariable: "azure_pass", usernameVariable: "azure_name")]) {
+                    sh('docker login -u "${azure_name}" -p "${azure_pass}" testingprimer.azurecr.io')
+                    sh('docker tag web-app testingprimer.azurecr.io/web-app')
+                    sh('docker push testingprimer.azurecr.io/web-app')
+                }
             }
         }
     }

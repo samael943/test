@@ -5,4 +5,4 @@ ADD requirements.txt /
 RUN pip install -r requirements.txt
 ADD . /
 
-CMD [ "pytest", "test_integration.py", "--alluredir=allure-results"]
+CMD [ "pytest", "test_integration.py", "test_integration_staging.py", "--alluredir=allure-results"]
