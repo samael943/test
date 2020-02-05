@@ -28,7 +28,7 @@ pipeline {
 
         stage('Start service') {
             steps{
-                sh('cd app/ && docker-compose up -d')
+                sh('cd app/ && docker run -d web-app')
             }
         }
 
