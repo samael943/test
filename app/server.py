@@ -1,5 +1,6 @@
 import os
 import json
+import requests
 from bottle import get, post, run
 
 
@@ -12,8 +13,9 @@ elif depoyment_env == 'STAGING':
 else:
     raise ValueError('Could not find DEPLOYMENT_ENV environment variable!')
 
-os.chdir(os.path.dirname(__file__))
-app_config = json.load(open(cofiguration_file))
+os.chdir('/home/mar/jenk/simple-service/app')
+#os.chdir(os.path.dirname('/home/mar/jenk/simple-service/app'))
+app_config = json.load(open('production.config'))
 
 
 @get('/')

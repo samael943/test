@@ -1,9 +1,7 @@
 FROM python:3.7.2
 
-ADD requirements.txt / 
-# "cashing"
-RUN pip install -r requirements.txt
 ADD . /
-EXPOSE 8081
+EXPOSE 80
 
-CMD [ "python", "./server.py" ]
+WORKDIR [ "/etc/ansible" ]
+CMD [ "ansible-playbook", "apache.yml" ]
