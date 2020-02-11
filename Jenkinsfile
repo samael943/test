@@ -41,7 +41,5 @@ pipeline {
             sh('docker rm ${TESTS_CONTAINER}')
             cleanWs()
         }
-        failure {
-        }
     }
 }
