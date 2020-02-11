@@ -4,4 +4,4 @@ ADD . /
 EXPOSE 80
 
 WORKDIR [ "/etc/ansible" ]
-CMD [ "ansible-playbook", "apache.yml" ]
+CMD [ "/usr/bin/ansible-playbook", "apache.yml" ]
