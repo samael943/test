@@ -1,7 +1,8 @@
-FROM python:3.7.2
+FROM ubuntu:18.04
+FROM ansible
 
 ADD . /
 EXPOSE 80
 
 WORKDIR [ "/etc/ansible" ]
-CMD [ "/usr/bin/ansible-playbook", "apache.yml" ]
+CMD [ "ansible-playbook", "apache.yml" ]
