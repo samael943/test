@@ -44,12 +44,4 @@ pipeline {
 
     }
 
-    post {
-        always {
-            sh('docker cp ${TESTS_CONTAINER}:/allure-results ${WORKSPACE}')
-            allure ([results: [[path: 'allure-results']]])
-            sh('docker rm ${TESTS_CONTAINER}')
-            cleanWs()
-        }
-    }
 }
