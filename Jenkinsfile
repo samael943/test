@@ -30,8 +30,8 @@ pipeline {
             steps{
                 sh('cd app/ && docker run -d apache')
             }
-*/        }
-
+        }
+*/
 
 
         stage('Start service') {
