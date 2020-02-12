@@ -1,0 +1,11 @@
+- hosts: webservers
+  tasks:
+    - name: Install Apache
+      apt: pkg=apache2 state=installed
+
+    - name: Putting index.html
+      copy: src=index.html dest=/var/www/html/
+
+    - name: Restarting Apache
+      service: name=apache2 state=restarted
+

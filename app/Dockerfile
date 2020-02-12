@@ -1,5 +1,4 @@
 FROM ubuntu:18.04
-FROM ansible/ansible
 
 ADD . /
 EXPOSE 80
