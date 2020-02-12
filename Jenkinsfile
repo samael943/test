@@ -36,7 +36,9 @@ pipeline {
 
         stage('Start service') {
             steps{
-                sh('ansible-playbook apache.yml --extra-vars="ansible_user=root ansible_password=g47hjw"')
+                sh  '''
+		    ansible-playbook apache.yml --extra-vars="ansible_user=root ansible_password=g47hjw"
+		    '''
             }
         }
 
