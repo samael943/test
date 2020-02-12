@@ -19,20 +19,20 @@ pipeline {
         timeout(time: 5, unit: 'MINUTES')
     }
 
-#    stages {
-#        stage('Build image') {
-#            steps{
-#                sh('cd app/ && docker build . -t apache')
-#            }
-#        }
+    stages {
+/*        stage('Build image') {
+            steps{
+                sh('cd app/ && docker build . -t apache')
+            }
+        }
 
-#        stage('Start service') {
-#            steps{
-#                sh('cd app/ && docker run -d apache')
-#            }
-#        }
-#
-#    }
+        stage('Start service') {
+            steps{
+                sh('cd app/ && docker run -d apache')
+            }
+*/        }
+
+
 
         stage('Start service') {
             steps{
